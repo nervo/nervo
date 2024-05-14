@@ -1,0 +1,22 @@
+name: Metrics
+
+on:
+  # Daily run
+  schedule:
+    - cron: "0 0 * * *"
+  # Run manually
+  workflow_dispatch:
+  # Run when pushing on master/main
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
